@@ -1,27 +1,36 @@
 package org.techtown.a1006_bibly;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BookDetailActivity extends AppCompatActivity {
+public class BookDetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    @BindView(R.id.book) ImageView book;
-    @BindView(R.id.title) TextView title;
-    @BindView(R.id.author) TextView author;
+    @BindView(R.id.book)
+    ImageView book;
+    @BindView(R.id.title)
+    TextView title;
+    @BindView(R.id.author)
+    TextView author;
+    @BindView(R.id.ratingBar)
+    RatingBar ratingBar;
 
-    @BindView(R.id.back) ImageView back;
-    @BindView(R.id.like) ImageView like;
+    @BindView(R.id.back)
+    ImageView back;
+    @BindView(R.id.like)
+    ImageView like;
     int i = 0;
+
+    private BookInfo bookInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +40,21 @@ public class BookDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-//        Bitmap bitmap = (Bitmap) intent.getExtras().get("book");
-//        book.setImageBitmap(bitmap);
-        book.setImageResource((Integer) intent.getExtras().get("book"));
-        title.setText(intent.getStringExtra("title"));
-        author.setText(intent.getStringExtra("author"));
+        bookInfo = (BookInfo) intent.getSerializableExtra("bookInfo");
+
+        book.setImageResource(bookInfo.getBook());
+        title.setText(bookInfo.getTitle());
+        author.setText(bookInfo.getAuthor());
+        ratingBar.setRating(bookInfo.getRate());
+
+        like.setOnClickListener(this);
+        back.setOnClickListener(this);
     }
 
-    @OnClick({R.id.back, R.id.like}) void click(View v) {
-        switch (v.getId()) {
-            case R.id.back:
-                finish();
-                break;
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.like:
                 if (i == 0) {
                     like.setImageResource(R.drawable.ic_like_full);
@@ -52,7 +63,10 @@ public class BookDetailActivity extends AppCompatActivity {
                     like.setImageResource(R.drawable.ic_like_empty);
                     i = 0;
                 }
-
+                break;
+            case R.id.back:
+                finish();
+                break;
         }
     }
 }

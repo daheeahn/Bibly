@@ -4,20 +4,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class MyRecyclerViewAdapter_TabFragment2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TabFragment2_MyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<BookInfo> bookInfos = new ArrayList<>();
 
-    public MyRecyclerViewAdapter_TabFragment2() {
+    public TabFragment2_MyRecyclerViewAdapter() {
 
         bookInfos.add(new BookInfo(R.drawable.dummy_1_1, "dummy_1_1", "person_1_1"));
         bookInfos.add(new BookInfo(R.drawable.dummy_1_2, "dummy_1_2", "person_1_2"));

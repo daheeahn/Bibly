@@ -10,9 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.techtown.a1006_bibly.MyRecyclerViewAdapter_TabFragment2;
-import org.techtown.a1006_bibly.R;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -40,7 +37,7 @@ public class TabFragment2 extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        MyRecyclerViewAdapter_TabFragment2 adapter = new MyRecyclerViewAdapter_TabFragment2();
+        TabFragment2_MyRecyclerViewAdapter adapter = new TabFragment2_MyRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
 
         return view;

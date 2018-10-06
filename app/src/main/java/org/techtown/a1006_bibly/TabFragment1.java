@@ -2,6 +2,7 @@ package org.techtown.a1006_bibly;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +37,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener {
     @BindView(R.id.btn3) Button btn3;
     @BindView(R.id.btn4) Button btn4;
     @BindView(R.id.btn5) Button btn5;
+    @BindView(R.id.btn_detail) TextView btn_detail;
 
     TabFragment1_view1_btn1 fragment1;
     TabFragment1_view1_btn2 fragment2;
@@ -62,14 +65,7 @@ public class TabFragment1 extends Fragment implements View.OnClickListener {
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
         btn5.setOnClickListener(this);
-
-
-
-
-
-
-
-
+        btn_detail.setOnClickListener(this);
 
         return view;
     }
@@ -80,24 +76,33 @@ public class TabFragment1 extends Fragment implements View.OnClickListener {
         Fragment selected = null;
 
         switch (v.getId()) {
+            case R.id.btn_detail:
+                Intent intent = new Intent(getActivity(), RecommendDetailActivity.class);
+                startActivity(intent);
+                break;
             case R.id.btn1:
                 selected = fragment1;
+                fragManager.beginTransaction().replace(R.id.tabfragment1_container1, selected).commit();
                 break;
             case R.id.btn2:
                 selected = fragment2;
+                fragManager.beginTransaction().replace(R.id.tabfragment1_container1, selected).commit();
                 break;
             case R.id.btn3:
                 selected = fragment3;
+                fragManager.beginTransaction().replace(R.id.tabfragment1_container1, selected).commit();
                 break;
             case R.id.btn4:
                 selected = fragment4;
+                fragManager.beginTransaction().replace(R.id.tabfragment1_container1, selected).commit();
                 break;
             case R.id.btn5:
                 selected = fragment5;
+                fragManager.beginTransaction().replace(R.id.tabfragment1_container1, selected).commit();
                 break;
+
         }
 
-        fragManager.beginTransaction().replace(R.id.tabfragment1_container1, selected).commit();
 
     }
 
