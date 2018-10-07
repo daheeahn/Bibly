@@ -18,7 +18,7 @@ public class TabFragment1_view1_btn5 extends Fragment implements OnItemClickList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = (View) inflater.inflate(R.layout.tab_fragment_1_recyclerview_container, container, false);
+        View view = (View) inflater.inflate(R.layout.tab_fragment_1_recyclerview_btn_container, container, false);
 
         //recyclerview
         context = view.getContext();
@@ -28,7 +28,7 @@ public class TabFragment1_view1_btn5 extends Fragment implements OnItemClickList
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        TabFragment1_MyRecyclerViewAdapter adapter = new TabFragment1_MyRecyclerViewAdapter(4, context);
+        TabFragment1_MyRecyclerViewAdapter_Small adapter = new TabFragment1_MyRecyclerViewAdapter_Small(4, context);
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(this);
 

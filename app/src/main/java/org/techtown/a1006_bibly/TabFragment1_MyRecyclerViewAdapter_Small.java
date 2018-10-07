@@ -1,8 +1,6 @@
 package org.techtown.a1006_bibly;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class TabFragment1_MyRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TabFragment1_MyRecyclerViewAdapter_Small extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<BookInfo> bookInfos = new ArrayList<>();
     private Context mContext;
     private OnItemClickListener clickListener;
@@ -32,7 +30,7 @@ public class TabFragment1_MyRecyclerViewAdapter extends RecyclerView.Adapter<Rec
              R.drawable.dummy_4_4, R.drawable.dummy_4_5, R.drawable.dummy_4_6}};
 
 
-    public TabFragment1_MyRecyclerViewAdapter(int index, Context context) {
+    public TabFragment1_MyRecyclerViewAdapter_Small(int index, Context context) {
         mContext = context;
 
         if (index == 0) {
@@ -71,7 +69,7 @@ public class TabFragment1_MyRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     }
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //XML 가져오는 부분
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tab_fragment_1_recyclerview_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tab_fragment_1_recyclerview_item_small, parent, false);
         return new ViewHolder(view);
     }
 

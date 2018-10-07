@@ -20,7 +20,7 @@ public class TabFragment1_view1_btn3 extends Fragment implements OnItemClickList
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = (View) inflater.inflate(R.layout.tab_fragment_1_recyclerview_container, container, false);
+        View view = (View) inflater.inflate(R.layout.tab_fragment_1_recyclerview_btn_container, container, false);
         ButterKnife.bind(this, view);
 
         //recyclerview
@@ -31,7 +31,7 @@ public class TabFragment1_view1_btn3 extends Fragment implements OnItemClickList
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        TabFragment1_MyRecyclerViewAdapter adapter = new TabFragment1_MyRecyclerViewAdapter(2, context);
+        TabFragment1_MyRecyclerViewAdapter_Small adapter = new TabFragment1_MyRecyclerViewAdapter_Small(2, context);
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(this);
 
