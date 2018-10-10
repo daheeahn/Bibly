@@ -1,6 +1,7 @@
 package org.techtown.a1006_bibly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,16 +14,10 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TabFragment2 extends Fragment {
+public class RatingFragment extends Fragment implements OnClickListener {
     @BindView(R.id.fragment2_recyclerview1)
     RecyclerView fragment2Recyclerview1;
-
-//    @BindView(R.id.book) ImageView book;
-//    @BindView(R.id.title) TextView title;
-//    @BindView(R.id.author) TextView author;
-//    @BindView(R.id.review_text) EditText review_text;
-//    @BindView(R.id.review_star) RatingBar review_star;
-//    @BindView(R.id.review_btn) Button review_btn;
+    Context context;
 
     @Nullable
     @Override
@@ -32,15 +27,33 @@ public class TabFragment2 extends Fragment {
 
         //recyclerview
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment2_recyclerview1);
-        Context context = view.getContext();
+        context = view.getContext();
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         TabFragment2_MyRecyclerViewAdapter adapter = new TabFragment2_MyRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
+        adapter.setClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onButtonClick(Fragment fragment) {
+
+    }
+
+    @Override
+    public void onBookClick(BookInfo bookInfo) {
+        Intent intent = new Intent(context, BookDetailActivity.class);
+        intent.putExtra("bookInfo", bookInfo);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRecommendDetailButtonClick() {
+
     }
 
 //    @Override

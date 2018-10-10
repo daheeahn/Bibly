@@ -1,5 +1,6 @@
 package org.techtown.a1006_bibly;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +19,8 @@ public class RecommendDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend_detail);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
 
     }
 

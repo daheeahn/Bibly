@@ -16,16 +16,15 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class TabFragment1_MyRecyclerViewAdapter_Big extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private ArrayList<RecommendType> recommendTypes = new ArrayList<>();
     private Context context;
-    private OnButtonClickListener clickListener;
+    private OnClickListener clickListener;
 
-    public void setClickListener(OnButtonClickListener clickListener) {
+    public void setClickListener(OnClickListener clickListener) {
         this.clickListener = clickListener;
     }
 
@@ -49,7 +48,7 @@ public class TabFragment1_MyRecyclerViewAdapter_Big extends RecyclerView.Adapter
         //데이터를 넣어주는 부분. 바인딩하는 부분
         ((ViewHolder) holder).type.setText(recommendTypes.get(position).type + "에 따른 책추천");
         if (clickListener != null)
-            clickListener.onClick(new TabFragment1_view1_btn1());
+            clickListener.onButtonClick(new TabFragment1_view1_btn1());
     }
 
     @Override
@@ -82,16 +81,12 @@ public class TabFragment1_MyRecyclerViewAdapter_Big extends RecyclerView.Adapter
             super(view);
             ButterKnife.bind(this, view);
 
-
-
-
             btn1.setOnClickListener(this);
             btn2.setOnClickListener(this);
             btn3.setOnClickListener(this);
             btn4.setOnClickListener(this);
             btn5.setOnClickListener(this);
-
-
+            btnDetail.setOnClickListener(this);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,6 +97,7 @@ public class TabFragment1_MyRecyclerViewAdapter_Big extends RecyclerView.Adapter
                     // check if item still exists
                     if(pos != RecyclerView.NO_POSITION){
                         Toast.makeText(v.getContext(), "You clicked " + pos, Toast.LENGTH_SHORT).show();
+                        clickListener.onRecommendDetailButtonClick();
                     }
 
                 }
@@ -112,24 +108,29 @@ public class TabFragment1_MyRecyclerViewAdapter_Big extends RecyclerView.Adapter
         public void onClick(View v) {
             Fragment fragment = null;
             switch (v.getId()) {
+
+                case R.id.btn_detail:
+                    Toast.makeText(v.getContext(), "recommend detail button clicked", Toast.LENGTH_SHORT).show();
+                    if (clickListener != null)
+                        clickListener.onRecommendDetailButtonClick();
+                    break;
+
                 case R.id.btn1:
                     fragment = new TabFragment1_view1_btn1();
-                    break;
                 case R.id.btn2:
                     fragment = new TabFragment1_view1_btn2();
-                    break;
                 case R.id.btn3:
                     fragment = new TabFragment1_view1_btn3();
-                    break;
                 case R.id.btn4:
                     fragment = new TabFragment1_view1_btn4();
-                    break;
                 case R.id.btn5:
                     fragment = new TabFragment1_view1_btn5();
-                    break;
+
+                if (clickListener != null && fragment!=null)
+                    clickListener.onButtonClick(fragment);
+
             }
-            if (clickListener != null)
-                clickListener.onClick(fragment);
+
         }
     }
 

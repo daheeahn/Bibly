@@ -14,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 
-public class TabFragment1 extends Fragment implements OnButtonClickListener {
+public class MainFragment extends Fragment implements OnClickListener {
 
     Context context;
+    RecyclerView recyclerView;
 
     private FragmentActivity myContext;
     private FragmentManager fragManager;
@@ -36,24 +39,48 @@ public class TabFragment1 extends Fragment implements OnButtonClickListener {
 
         //recyclerview
         context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment1_recyclerview2);
+        recyclerView = (RecyclerView) view.findViewById(R.id.fragment1_recyclerview2);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         TabFragment1_MyRecyclerViewAdapter_Big adapter =
-                new TabFragment1_MyRecyclerViewAdapter_Big(context);
+                new TabFragment1_MyRecyclerViewAdapter_Big(context, getLists());
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(this);
 
         return view;
     }
 
+
+    public ArrayList<RecommendType> getLists(){
+        ArrayList<RecommendType> recommendTypes = new ArrayList<>();
+        recommendTypes.add(new RecommendType("장르"));
+        recommendTypes.add(new RecommendType("기분"));
+        recommendTypes.add(new RecommendType("날씨"));
+        return recommendTypes;
+
+    }
     @Override
-    public void onClick(Fragment fragment) {
-        fragManager = myContext.getSupportFragmentManager();
-        fragManager.beginTransaction().replace(R.id.tabfragment1_container1, fragment).commit();
+    public void onButtonClick(Fragment fragment) {
+
+        TabFragment1_MyRecyclerViewAdapter_Big adapter =
+                new TabFragment1_MyRecyclerViewAdapter_Big(context, getLists());
+        recyclerView.setAdapter(adapter);
+        adapter.setClickListener(this);
+
+    }
+
+    @Override
+    public void onBookClick(BookInfo bookInfo) {
+
+    }
+
+    @Override
+    public void onRecommendDetailButtonClick() {
+        Intent intent = new Intent(context, RecommendDetailActivity.class);
+        startActivity(intent);
     }
 }
 

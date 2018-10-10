@@ -13,8 +13,9 @@ import java.util.ArrayList;
 
 public class TabFragment1_MyRecyclerViewAdapter_Small extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<BookInfo> bookInfos = new ArrayList<>();
+
     private Context mContext;
-    private OnItemClickListener clickListener;
+    private OnClickListener clickListener;
 
     int[][] dummyBookImage = {
             {R.drawable.dummy_1_1, R.drawable.dummy_1_2, R.drawable.dummy_1_3,
@@ -89,7 +90,7 @@ public class TabFragment1_MyRecyclerViewAdapter_Small extends RecyclerView.Adapt
         return bookInfos.size();
     }
 
-    public void setClickListener(OnItemClickListener itemClickListener) {
+    public void setClickListener(OnClickListener itemClickListener) {
         this.clickListener = itemClickListener;
     }
 
@@ -117,7 +118,7 @@ public class TabFragment1_MyRecyclerViewAdapter_Small extends RecyclerView.Adapt
                     }
 
                     if (clickListener != null)
-                        clickListener.onClick(bookInfos.get(pos));
+                        clickListener.onBookClick(bookInfos.get(pos));
 
 
                 }

@@ -77,9 +77,27 @@
             app:layout_constraintStart_toEndOf="@+id/book"
             app:layout_constraintTop_toBottomOf="@+id/author" />
 
+        <TextView
+            android:id="@+id/review_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/book"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
     </android.support.constraint.ConstraintLayout>
 
     <include layout="@layout/division" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="명언"
+        android:textSize="50dp"
+        android:layout_marginLeft="12dp" />
 
 
 </LinearLayout>

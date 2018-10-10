@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class TabFragment1_view1_btn5 extends Fragment implements OnItemClickListener {
+public class TabFragment1_view1_btn5 extends Fragment implements OnClickListener {
 
     Context context;
 
@@ -36,10 +36,20 @@ public class TabFragment1_view1_btn5 extends Fragment implements OnItemClickList
     }
 
     @Override
-    public void onClick(BookInfo bookInfo) {
+    public void onButtonClick(Fragment fragment) {
+
+    }
+
+    @Override
+    public void onBookClick(BookInfo bookInfo) {
         Intent intent = new Intent(context, BookDetailActivity.class);
         intent.putExtra("bookInfo", bookInfo);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onRecommendDetailButtonClick() {
 
     }
 }

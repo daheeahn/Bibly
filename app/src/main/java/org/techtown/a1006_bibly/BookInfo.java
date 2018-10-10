@@ -20,7 +20,7 @@ public class BookInfo implements Serializable {
         this.book = book;
         this.title = title;
         this.author = author;
-        this.review = "";
+        this.review = "한줄평이 입력되지 않았습니다.";
         this.rate = 1;
     }
 

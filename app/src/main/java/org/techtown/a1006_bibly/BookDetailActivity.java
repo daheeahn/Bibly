@@ -23,6 +23,8 @@ public class BookDetailActivity extends AppCompatActivity implements View.OnClic
     TextView author;
     @BindView(R.id.ratingBar)
     RatingBar ratingBar;
+    @BindView(R.id.review_text)
+    TextView review_text;
 
     @BindView(R.id.back)
     ImageView back;
@@ -46,11 +48,11 @@ public class BookDetailActivity extends AppCompatActivity implements View.OnClic
         title.setText(bookInfo.getTitle());
         author.setText(bookInfo.getAuthor());
         ratingBar.setRating(bookInfo.getRate());
+        review_text.setText(bookInfo.getReview());
 
         like.setOnClickListener(this);
         back.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {
