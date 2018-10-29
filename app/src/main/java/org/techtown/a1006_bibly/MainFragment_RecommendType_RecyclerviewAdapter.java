@@ -1,8 +1,6 @@
 package org.techtown.a1006_bibly;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
 
 
     private ArrayList<RecommendType> recommendTypes = new ArrayList<>();
@@ -60,45 +59,47 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
 
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         //데이터를 넣어주는 부분. 바인딩하는 부분
-        ((ViewHolder) holder).type.setText(recommendTypes.get(position).type + "에 따른 책추천");
+        ((ViewHolder) holder).type.setText(recommendTypes.get(holder.getAdapterPosition()).type + "에 따른 책추천");
+
+//        final int position 대신 holder.getAdapterPosition()!!
 
         //https://stackoverflow.com/questions/37194653/fragment-replacing-in-recyclerview-item
         View.OnClickListener listener = new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
                 switch (v.getId()) {
                     case R.id.btn1:
-                        clickListener.onButtonClick(position, 1, v);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
+                                                    holder.getAdapterPosition(),
+                                                    1);
                         break;
                     case R.id.btn2:
-                        clickListener.onButtonClick(position, 2, v);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
+                                                    holder.getAdapterPosition(),
+                                                    2);
                         break;
                     case R.id.btn3:
-                        //오류
-//                        context = v.getContext();
-//                        recyclerView = (RecyclerView) recyclerView.findViewById(R.id.main_fragment_books_recyclerview);
-//
-//                        layoutManager = new LinearLayoutManager(context);
-//                        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//                        recyclerView.setLayoutManager(layoutManager);
-//
-//                        adapter = new MainFragment_Books_RecyclerviewAdapter(3, context);
-//                        recyclerView.setAdapter(adapter);
-
-                        clickListener.onButtonClick(position, 3, v);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
+                                                    holder.getAdapterPosition(),
+                                                    3);
                         break;
                     case R.id.btn4:
-                        clickListener.onButtonClick(position, 4, v);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
+                                                    holder.getAdapterPosition(),
+                                                    4);
                         break;
                     case R.id.btn5:
-                        clickListener.onButtonClick(position, 5, v);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
+                                                    holder.getAdapterPosition(),
+                                                    5);
                         break;
                     case R.id.btn_detail:
                     case R.id.linearLayout:
-                        clickListener.onRecommendDetailButtonClick(recommendTypes.get(position).type.toString());
+                        clickListener.onRecommendDetailButtonClick(recommendTypes.get(holder.getAdapterPosition()).type.toString());
                         break;
                 }
             }
@@ -137,6 +138,8 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
         Button btn5;
         @BindView(R.id.linearLayout)
         LinearLayout linearLayout;
+        @BindView(R.id.main_fragment_books_recyclerview)
+        RecyclerView mainFragmentBooks_Recyclerview;
 
         ViewHolder(View view) {
             super(view);

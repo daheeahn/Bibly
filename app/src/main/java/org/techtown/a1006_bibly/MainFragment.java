@@ -70,20 +70,17 @@ public class MainFragment extends Fragment implements OnClickListener {
 //    }
 
     @Override
-    public void onButtonClick(int pos, int btn, View v) { //pos 0 / btn 1
+    public void onButtonClick(RecyclerView recyclerView, int pos, int btn) {
         Toast.makeText(context, "position: " + pos + " btn: " + btn, Toast.LENGTH_SHORT).show();
 
         //recyclerview
-        //context = v.getContext();
-//        recyclerView = (RecyclerView) v.findViewById(R.id.main_fragment_books_recyclerview);
-//
-//        layoutManager = new LinearLayoutManager(context);
-//        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        MainFragment_Books_RecyclerviewAdapter adapter
-//                = new MainFragment_Books_RecyclerviewAdapter(btn, context);
-//        recyclerView.setAdapter(adapter);
+        layoutManager = new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        MainFragment_Books_RecyclerviewAdapter adapter
+                = new MainFragment_Books_RecyclerviewAdapter(btn, context);
+        recyclerView.setAdapter(adapter);
         //adapter.setClickListener(this);
     }
 
