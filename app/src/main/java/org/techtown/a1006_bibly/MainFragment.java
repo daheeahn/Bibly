@@ -70,8 +70,8 @@ public class MainFragment extends Fragment implements OnClickListener {
 //    }
 
     @Override
-    public void onButtonClick(RecyclerView recyclerView, int pos, int btn) {
-        Toast.makeText(context, "position: " + pos + " btn: " + btn, Toast.LENGTH_SHORT).show();
+    public void onButtonClick(RecyclerView recyclerView, String type, String btnKind, int btnNum) {
+        Toast.makeText(context, "type:" + type + " / " + "kind:" + btnKind + "를 선택하였습니다.", Toast.LENGTH_SHORT).show();
 
         //recyclerview
         layoutManager = new LinearLayoutManager(context);
@@ -79,9 +79,9 @@ public class MainFragment extends Fragment implements OnClickListener {
         recyclerView.setLayoutManager(layoutManager);
 
         MainFragment_Books_RecyclerviewAdapter adapter
-                = new MainFragment_Books_RecyclerviewAdapter(btn, context);
+                = new MainFragment_Books_RecyclerviewAdapter(btnNum, context);
         recyclerView.setAdapter(adapter);
-        //adapter.setClickListener(this);
+        adapter.setClickListener(this);
     }
 
     @Override

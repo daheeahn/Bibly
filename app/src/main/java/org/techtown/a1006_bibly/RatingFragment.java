@@ -1,6 +1,7 @@
 package org.techtown.a1006_bibly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,7 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RatingFragment extends Fragment { //implements OnClickListener {
+public class RatingFragment extends Fragment implements OnClickListener {
     @BindView(R.id.fragment2_recyclerview1)
     RecyclerView fragment2Recyclerview1;
 
@@ -34,27 +35,28 @@ public class RatingFragment extends Fragment { //implements OnClickListener {
 
         RatingFragment_RecyclerViewAdapter adapter = new RatingFragment_RecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-        //adapter.setClickListener(this);
+        adapter.setClickListener(this);
 
         return view;
     }
 
-//    @Override
-//    public void onButtonClick() {
-//
-//    }
+    @Override
+    public void onButtonClick(RecyclerView recyclerView, String type, String btnKind, int btnNum) {
 
-//    @Override
-//    public void onBookClick(BookInfo bookInfo) {
-//        Intent intent = new Intent(context, BookDetailActivity.class);
-//        intent.putExtra("bookInfo", bookInfo);
-//        startActivity(intent);
-//    }
-//
-//    @Override
-//    public void onRecommendDetailButtonClick() {
+    }
 
-//    }
+    @Override
+    public void onBookClick(BookInfo bookInfo) {
+        Intent intent = new Intent(context, BookDetailActivity.class);
+        intent.putExtra("bookInfo", bookInfo);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRecommendDetailButtonClick(String type) {
+
+    }
+
 
 //    @Override
 //    public void onDestroyView() {

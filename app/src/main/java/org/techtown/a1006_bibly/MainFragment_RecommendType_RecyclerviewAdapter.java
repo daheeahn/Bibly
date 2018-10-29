@@ -17,8 +17,6 @@ import butterknife.ButterKnife;
 
 public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-
-
     private ArrayList<RecommendType> recommendTypes = new ArrayList<>();
     private Context context;
     private OnClickListener clickListener;
@@ -53,17 +51,22 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
 
         adapter = new MainFragment_Books_RecyclerviewAdapter(1, context);
         recyclerView.setAdapter(adapter);
+        adapter.setClickListener(clickListener);
 
         return new ViewHolder(view);
     }
 
-
+    String[] type_kinds = {"전체", "문학", "인문/사회", "자기계발", "만화"};
+    //        final int position 대신 holder.getAdapterPosition()!!
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         //데이터를 넣어주는 부분. 바인딩하는 부분
         ((ViewHolder) holder).type.setText(recommendTypes.get(holder.getAdapterPosition()).type + "에 따른 책추천");
-
-//        final int position 대신 holder.getAdapterPosition()!!
+        ((ViewHolder) holder).btn1.setText(type_kinds[0]);
+        ((ViewHolder) holder).btn2.setText(type_kinds[1]);
+        ((ViewHolder) holder).btn3.setText(type_kinds[2]);
+        ((ViewHolder) holder).btn4.setText(type_kinds[3]);
+        ((ViewHolder) holder).btn5.setText(type_kinds[4]);
 
         //https://stackoverflow.com/questions/37194653/fragment-replacing-in-recyclerview-item
         View.OnClickListener listener = new View.OnClickListener() {
@@ -73,32 +76,37 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
 
                 switch (v.getId()) {
                     case R.id.btn1:
-                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
-                                                    holder.getAdapterPosition(),
-                                                    1);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview, //recyclerview
+                                                    recommendTypes.get(holder.getAdapterPosition()).type, //type
+                                                    type_kinds[0],                                        //btnKind
+                                                    1);                                          //btnNum
                         break;
                     case R.id.btn2:
-                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
-                                                    holder.getAdapterPosition(),
-                                                    2);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview, //recyclerview
+                                                    recommendTypes.get(holder.getAdapterPosition()).type, //type
+                                                    type_kinds[1],                                        //btnKind
+                                                   2);                                          //btnNum
                         break;
                     case R.id.btn3:
-                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
-                                                    holder.getAdapterPosition(),
-                                                    3);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview, //recyclerview
+                                                    recommendTypes.get(holder.getAdapterPosition()).type, //type
+                                                    type_kinds[2],                                        //btnKind
+                                                    3);                                          //btnNum
                         break;
                     case R.id.btn4:
-                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
-                                                    holder.getAdapterPosition(),
-                                                    4);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview, //recyclerview
+                                                    recommendTypes.get(holder.getAdapterPosition()).type, //type
+                                                    type_kinds[3],                                        //btnKind
+                                                    4);                                          //btnNum
                         break;
                     case R.id.btn5:
-                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview,
-                                                    holder.getAdapterPosition(),
-                                                    5);
+                        clickListener.onButtonClick(((ViewHolder) holder).mainFragmentBooks_Recyclerview, //recyclerview
+                                                    recommendTypes.get(holder.getAdapterPosition()).type, //type
+                                                    type_kinds[4],                                        //btnKind
+                                                    5);                                          //btnNum
                         break;
                     case R.id.btn_detail:
-                    case R.id.linearLayout:
+                    case R.id.type:
                         clickListener.onRecommendDetailButtonClick(recommendTypes.get(holder.getAdapterPosition()).type.toString());
                         break;
                 }
@@ -111,7 +119,8 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
         ((ViewHolder) holder).btn4.setOnClickListener(listener);
         ((ViewHolder) holder).btn5.setOnClickListener(listener);
         ((ViewHolder) holder).btnDetail.setOnClickListener(listener);
-        ((ViewHolder) holder).linearLayout.setOnClickListener(listener);
+        ((ViewHolder) holder).type.setOnClickListener(listener);
+
     }
 
     @Override

@@ -39,6 +39,7 @@ public class MainFragment_Books_RecyclerviewAdapter extends RecyclerView.Adapter
                     R.drawable.dummy_4_4, R.drawable.dummy_4_5, R.drawable.dummy_4_6}};
 
 
+    //TODO : 데이터 묶어놓기
     public MainFragment_Books_RecyclerviewAdapter(int index, Context context) {
         mContext = context;
 
@@ -84,24 +85,26 @@ public class MainFragment_Books_RecyclerviewAdapter extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         //데이터를 넣어주는 부분. 바인딩하는 부분
         ((ViewHolder) holder).dummyBook.setImageResource(bookInfos.get(position).book);
         ((ViewHolder) holder).ratingBar.setRating(bookInfos.get(position).rate);
 
 
-//        View.OnClickListener listener = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switch (v.getId()) {
-//                    case R.id.dummy_book:
-//                        clickListener.onBookClick(bookInfos.get(position));
-//                        break;
-//                }
-//            }
-//
-//        };
-//        ((ViewHolder) holder).dummyBook.setOnClickListener(listener);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.dummy_book:
+                    case R.id.ratingBar: //이건 눌러도 실행이 안되네,,?
+                        clickListener.onBookClick(bookInfos.get(holder.getAdapterPosition()));
+                        break;
+                }
+            }
+
+        };
+        ((ViewHolder) holder).dummyBook.setOnClickListener(listener);
+        ((ViewHolder) holder).ratingBar.setOnClickListener(listener);
 
 
     }
