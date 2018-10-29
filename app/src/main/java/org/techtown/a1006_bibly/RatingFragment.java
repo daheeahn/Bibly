@@ -1,7 +1,6 @@
 package org.techtown.a1006_bibly;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,15 +13,16 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RatingFragment extends Fragment implements OnClickListener {
+public class RatingFragment extends Fragment { //implements OnClickListener {
     @BindView(R.id.fragment2_recyclerview1)
     RecyclerView fragment2Recyclerview1;
+
     Context context;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        View view = inflater.inflate(R.layout.rating_fragment, container, false);
         ButterKnife.bind(this, view);
 
         //recyclerview
@@ -32,29 +32,29 @@ public class RatingFragment extends Fragment implements OnClickListener {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        TabFragment2_MyRecyclerViewAdapter adapter = new TabFragment2_MyRecyclerViewAdapter();
+        RatingFragment_RecyclerViewAdapter adapter = new RatingFragment_RecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-        adapter.setClickListener(this);
+        //adapter.setClickListener(this);
 
         return view;
     }
 
-    @Override
-    public void onButtonClick(Fragment fragment) {
+//    @Override
+//    public void onButtonClick() {
+//
+//    }
 
-    }
+//    @Override
+//    public void onBookClick(BookInfo bookInfo) {
+//        Intent intent = new Intent(context, BookDetailActivity.class);
+//        intent.putExtra("bookInfo", bookInfo);
+//        startActivity(intent);
+//    }
+//
+//    @Override
+//    public void onRecommendDetailButtonClick() {
 
-    @Override
-    public void onBookClick(BookInfo bookInfo) {
-        Intent intent = new Intent(context, BookDetailActivity.class);
-        intent.putExtra("bookInfo", bookInfo);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onRecommendDetailButtonClick() {
-
-    }
+//    }
 
 //    @Override
 //    public void onDestroyView() {
@@ -70,4 +70,5 @@ public class RatingFragment extends Fragment implements OnClickListener {
 //        intent.putExtra("author", author.getText().toString());
 //        startActivity(intent);
 //    }
+
 }

@@ -61,7 +61,8 @@ public class BookDetailActivity extends AppCompatActivity implements View.OnClic
                 if (i == 0) {
                     like.setImageResource(R.drawable.ic_like_full);
                     i = 1;
-                } else if (i == 1) {
+                }
+                else if (i == 1) {
                     like.setImageResource(R.drawable.ic_like_empty);
                     i = 0;
                 }
