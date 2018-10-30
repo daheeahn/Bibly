@@ -11,6 +11,7 @@ public class BookInfo implements Serializable {
     public String author;
     public String review;
     public float rate; //평점
+    public String publisher; //출판사
 
     public BookInfo(int book) {
         this(book, "", "");
@@ -22,6 +23,7 @@ public class BookInfo implements Serializable {
         this.author = author;
         this.review = "한줄평이 입력되지 않았습니다.";
         this.rate = 1;
+        this.publisher = "default publisher";
     }
 
     public int getBook() {
@@ -62,5 +64,13 @@ public class BookInfo implements Serializable {
 
     public void setRate(float rate) {
         this.rate = rate;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
 }
