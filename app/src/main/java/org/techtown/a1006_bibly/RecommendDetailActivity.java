@@ -82,20 +82,29 @@ public class RecommendDetailActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            Fragment fragment;
             switch (position) {
                 case 0:
-                    RecommendDetailKindFragment_Kind1 kind1 = new RecommendDetailKindFragment_Kind1();
-                    return kind1;
+                    fragment = new RecommendDetailKindFragment_Kind1();
+                    break;
                 case 1:
+                    fragment = new RecommendDetailKindFragment_Kind2();
+                    break;
                 case 2:
+                    fragment = new RecommendDetailKindFragment_Kind3();
+                    break;
                 case 3:
+                    fragment = new RecommendDetailKindFragment_Kind4();
+                    break;
                 case 4:
-                    RecommendDetailKindFragment_Kind2 kind2 = new RecommendDetailKindFragment_Kind2();
-                    return kind2;
+                    fragment = new RecommendDetailKindFragment_Kind5();
+                    break;
 
                 default:
                     return null;
             }
+            return fragment;
+
         }
 
         @Override

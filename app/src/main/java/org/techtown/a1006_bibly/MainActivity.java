@@ -13,6 +13,8 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
+    private BackPressCloseHandler backPressCloseHandler;
+
     class PagerAdapter extends FragmentStatePagerAdapter {
         int mNumOfTabs;
 
@@ -85,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        backPressCloseHandler = new BackPressCloseHandler(this);
+    }
+
+    @Override public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
+
     }
 
 }

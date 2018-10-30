@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
-public class RecommendDetailKindFragment_Kind1 extends Fragment implements OnClickListener {
+public class RecommendDetailKindFragment_Kind4 extends Fragment implements OnClickListener {
     Context context;
 
     @Nullable
@@ -29,12 +28,17 @@ public class RecommendDetailKindFragment_Kind1 extends Fragment implements OnCli
         recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
 
         RecommendDetailKindFragment_RecyclerViewAdapter adapter
-                = new RecommendDetailKindFragment_RecyclerViewAdapter(1);
+                = new RecommendDetailKindFragment_RecyclerViewAdapter(4);
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(this);
 
         return view;
     }
+
+    public RecommendDetailKindFragment_Kind4() {
+
+    }
+
 
     @Override
     public void onButtonClick(RecyclerView recyclerView, String type, String btnKind, int btnNum) {

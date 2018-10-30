@@ -1,9 +1,11 @@
 package org.techtown.a1006_bibly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +14,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
-public class RecommendDetailKindFragment_Kind2 extends Fragment {
+public class RecommendDetailKindFragment_Kind2 extends Fragment implements OnClickListener {
     Context context;
 
     @Nullable
@@ -24,14 +26,12 @@ public class RecommendDetailKindFragment_Kind2 extends Fragment {
         //recyclerview
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recommendDetailKindFragment_Recyclerview);
         context = view.getContext();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
 
         RecommendDetailKindFragment_RecyclerViewAdapter adapter
                 = new RecommendDetailKindFragment_RecyclerViewAdapter(2);
         recyclerView.setAdapter(adapter);
-        //adapter.setClickListener(this);
+        adapter.setClickListener(this);
 
         return view;
     }
@@ -41,4 +41,20 @@ public class RecommendDetailKindFragment_Kind2 extends Fragment {
     }
 
 
+    @Override
+    public void onButtonClick(RecyclerView recyclerView, String type, String btnKind, int btnNum) {
+
+    }
+
+    @Override
+    public void onBookClick(BookInfo bookInfo) {
+        Intent intent = new Intent(context, BookDetailActivity.class);
+        intent.putExtra("bookInfo", bookInfo);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRecommendDetailButtonClick(String type, String[] type_kinds) {
+
+    }
 }

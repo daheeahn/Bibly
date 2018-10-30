@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -82,11 +83,31 @@ public class RecommendDetailKindFragment_RecyclerViewAdapter extends RecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         //데이터를 넣어주는 부분. 바인딩하는 부분
         ((ViewHolder) holder).book.setImageResource(bookInfos.get(position).book);
         ((ViewHolder) holder).title.setText(bookInfos.get(position).title);
         ((ViewHolder) holder).author.setText(bookInfos.get(position).author);
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.book:
+                    case R.id.title:
+                    case R.id.author:
+                    case R.id.layout:
+                        clickListener.onBookClick(bookInfos.get(position));
+                        break;
+                }
+            }
+
+        };
+        ((ViewHolder) holder).book.setOnClickListener(listener);
+        ((ViewHolder) holder).title.setOnClickListener(listener);
+        ((ViewHolder) holder).author.setOnClickListener(listener);
+        ((ViewHolder) holder).reviewStar.setOnClickListener(listener);
+        ((ViewHolder) holder).layout.setOnClickListener(listener);
     }
 
     @Override
@@ -98,16 +119,10 @@ public class RecommendDetailKindFragment_RecyclerViewAdapter extends RecyclerVie
 
         @BindView(R.id.book)
         ImageView book;
-        @BindView(R.id.like)
-        ImageView like;
         @BindView(R.id.title)
         TextView title;
         @BindView(R.id.author)
         TextView author;
-        @BindView(R.id.review_text)
-        EditText reviewText;
-        @BindView(R.id.review_btn)
-        Button reviewBtn;
         @BindView(R.id.review_star)
         RatingBar reviewStar;
         @BindView(R.id.layout)
