@@ -1,8 +1,11 @@
 package org.techtown.a1006_bibly;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -18,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class BookDetailActivity extends AppCompatActivity implements View.OnClickListener {
+public class BookDetailActivity extends AppCompatActivity implements View.OnClickListener, OnClickListener {
 
     @BindView(R.id.book)
     ImageView book;
@@ -46,6 +49,10 @@ public class BookDetailActivity extends AppCompatActivity implements View.OnClic
     int i = 0;
 
     private BookInfo bookInfo;
+    RecyclerView recyclerView;
+    View view;
+    LinearLayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,19 @@ public class BookDetailActivity extends AppCompatActivity implements View.OnClic
         summary.setText(getResources().getString(R.string.dummy_summary));
 
         makeTextViewResizable(summary, 5, "View More", true);
+
+
+
+        //other 책 추천 recyclerview
+        recyclerView = (RecyclerView) findViewById(R.id.otherBookRecommend_InBookDetail_RecyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        BookDetailActivity_OtherBookRecommend_RecyclerviewAdapter adapter
+                = new BookDetailActivity_OtherBookRecommend_RecyclerviewAdapter();
+        recyclerView.setAdapter(adapter);
+        adapter.setClickListener(this);
     }
 
     @Override
@@ -151,6 +171,23 @@ public class BookDetailActivity extends AppCompatActivity implements View.OnClic
 
         }
         return ssb;
+
+    }
+
+    @Override
+    public void onButtonClick(RecyclerView recyclerView, String type, String btnKind, int btnNum) {
+
+    }
+
+    @Override
+    public void onBookClick(BookInfo bookInfo) {
+        Intent intent = new Intent(this, BookDetailActivity.class);
+        intent.putExtra("bookInfo", bookInfo);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRecommendDetailButtonClick(String type, String[] type_kinds) {
 
     }
 }

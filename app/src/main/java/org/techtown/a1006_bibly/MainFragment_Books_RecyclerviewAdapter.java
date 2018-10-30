@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -80,7 +79,7 @@ public class MainFragment_Books_RecyclerviewAdapter extends RecyclerView.Adapter
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //XML 가져오는 부분
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_fragment_recyclerview_item_book, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_fragment_recyclerview_item, parent, false);
         return new ViewHolder(view);
     }
 
