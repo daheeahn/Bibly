@@ -53,7 +53,7 @@ public class RatingFragment extends Fragment implements OnClickListener {
     }
 
     @Override
-    public void onRecommendDetailButtonClick(String type) {
+    public void onRecommendDetailButtonClick(String type, String[] type_kinds) {
 
     }
 

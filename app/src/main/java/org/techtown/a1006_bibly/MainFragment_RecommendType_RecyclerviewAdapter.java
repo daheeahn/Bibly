@@ -61,7 +61,8 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
         //데이터를 넣어주는 부분. 바인딩하는 부분
-        ((ViewHolder) holder).type.setText(recommendTypes.get(holder.getAdapterPosition()).type + "에 따른 책추천");
+        ((ViewHolder) holder).type.setText(recommendTypes.get(holder.getAdapterPosition()).type + "에 따른 책 추천");
+
         ((ViewHolder) holder).btn1.setText(type_kinds[0]);
         ((ViewHolder) holder).btn2.setText(type_kinds[1]);
         ((ViewHolder) holder).btn3.setText(type_kinds[2]);
@@ -107,7 +108,8 @@ public class MainFragment_RecommendType_RecyclerviewAdapter extends RecyclerView
                         break;
                     case R.id.btn_detail:
                     case R.id.type:
-                        clickListener.onRecommendDetailButtonClick(recommendTypes.get(holder.getAdapterPosition()).type.toString());
+                        clickListener.onRecommendDetailButtonClick(recommendTypes.get(holder.getAdapterPosition()).type.toString(),
+                                                                    type_kinds);
                         break;
                 }
             }

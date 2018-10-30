@@ -2,6 +2,11 @@ package org.techtown.a1006_bibly;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,8 +19,8 @@ import butterknife.OnClick;
 public class RecommendDetailActivity extends AppCompatActivity {
     @BindView(R.id.back)
     ImageView back;
-    @BindView(R.id.type)
-    TextView type;
+    @BindView(R.id.toolbarText)
+    TextView toolbarText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +30,79 @@ public class RecommendDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
-        this.type.setText(type);
+        String[] type_kinds = intent.getStringArrayExtra("type_kinds");
+        toolbarText.setText(type + "에 따른 책 추천");
+
+        //kind tab
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        for (int i = 0; i < type_kinds.length; i++)
+            tabLayout.addTab(tabLayout.newTab().setText(type_kinds[i]));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final RecommendDetailActivity.PagerAdapter adapter
+                = new RecommendDetailActivity.PagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
     }
 
-
     @OnClick(R.id.back)
     void Click(View v) {
         finish();
+    }
+
+
+
+
+    class PagerAdapter extends FragmentStatePagerAdapter {
+        int mNumOfTabs;
+
+        public PagerAdapter(FragmentManager fm, int NumOfTabs) {
+            super(fm);
+            this.mNumOfTabs = NumOfTabs;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    RecommendDetailKindFragment_Kind1 kind1 = new RecommendDetailKindFragment_Kind1();
+                    return kind1;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    RecommendDetailKindFragment_Kind2 kind2 = new RecommendDetailKindFragment_Kind2();
+                    return kind2;
+
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return mNumOfTabs;
+        }
+
+
     }
 }

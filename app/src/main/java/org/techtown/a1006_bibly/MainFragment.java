@@ -92,9 +92,10 @@ public class MainFragment extends Fragment implements OnClickListener {
     }
 
     @Override
-    public void onRecommendDetailButtonClick(String type) {
+    public void onRecommendDetailButtonClick(String type, String[] type_kinds) {
         Intent intent = new Intent(context, RecommendDetailActivity.class);
         intent.putExtra("type", type);
+        intent.putExtra("type_kinds", type_kinds);
         startActivity(intent);
 //        Gson gson = new Gson();
 //        Book book = gson.toJson(tmp, Book.class);

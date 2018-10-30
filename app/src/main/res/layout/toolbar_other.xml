@@ -11,5 +11,14 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_back"/>
 
+    <TextView
+        android:id="@+id/toolbarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="type"
+        android:textSize="25dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="10dp" />
+
 </android.support.v7.widget.Toolbar>
 
